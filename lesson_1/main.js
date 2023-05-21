@@ -254,6 +254,10 @@ var totalCoin2 = subjects.reduce(coinHandler, 0);
 console.log(totalCoin2);
 
 // ================ ForEach ================
+Array.prototype.forEach2 = function(callback) {
+
+}
+
 var hehe = ['Jayce', 'Kata', 'Lucy'];
 hehe.forEach(function(elm, index, array) {
     console.log(elm, index, array);
@@ -390,4 +394,224 @@ function myCallback(value) {
 
 myFunction(myCallback);
 
+
+
+// ==================================================
+// ==================== HTML DOM ====================
+// ==================================================
+
+// stand for "Document Object Model"
+/**
+ * -- Includes 3 part:
+ *    1. Element
+ *    2. Attribute
+ *    3. Text
+ */
+
+// Node
+
+// ----------------------------
+
+// Javascript: Browser | Server (Node.JS)
+
+// Browser: HTML -> DOM -> WEB API
+
+// Document
+console.log(document);
+
+document.write('HELLO GUYS!');
+
+// Element: ID, class, tag, CSS selector, HTML collection
+var id = document.getElementById('heading');
+
+var class1 = document.getElementsByClassName('heading');
+
+var tag = document.getElementsByTagName('h1');
+
+var css = document.querySelector('.heading');
+
+console.log('css selector: ', css);
+console.log('tag: ', tag);
+console.log('class: ', id);
+console.log('id: ', class1);
+
+// === Attributes ===
+var headingElement = document.querySelector('h1');
+
+// Set attribute
+headingElement.title = 'title';
+headingElement.id = 'id';
+headingElement.className = 'class';
+/* or */
+headingElement.setAttribute('class', 'heading');
+
+// Get attribute
+console.log(headingElement.getAttribute('class'));
+
+// innerText, textContent
+// get text
+console.log(headingElement.innerText);
+console.log(headingElement.textContent);
+
+// set text
+headingElement.innerText = 'I love you';
+headingElement.textContent = 'I hate you';
+
+// innerHTML, outerHTML
+var boxElement = document.querySelector('.box'); // ***
+
+boxElement.innerHTML = '<h1>Heading</h1>';
+
+console.log(boxElement.innerHTML);
+
+console.log(boxElement.outerHTML);
+
+// === Node properties ===
+
+// ====   DOM style   ====
+
+// boxElement.style.width = '100px';
+// boxElement.style.height = '200px';
+// boxElement.style.backgroundColor = 'red';
+// boxElement.style.borderRadius = '10px';
+
+Object.assign(boxElement.style, {
+    width: '200px',
+    height: '100px',
+    backgroundColor: 'green'
+})
+
+// === ClassList property ===
+
+// add
+// contains
+// remove
+// toggle
+
+console.log(boxElement.classList.length); // length
+console.log(boxElement.classList.value); // value in string type
+
+boxElement.classList.add('red'); // add class
+console.log(boxElement.classList.contains('red')); // check class is contain or not
+boxElement.classList.remove('red'); // remove class
+
+setTimeout(() => {                          //
+    boxElement.classList.remove('red');     //  remove class after 3s
+}, 3000);                                   //
+
+boxElement.classList.toggle('red'); // remove/add if class 'red' is exist/not exist
+
+setInterval(() => {
+    boxElement.classList.toggle('red');
+}, 1000);
+
+// === DOM events ===
+
+// 1. Attribute events: using in html file
+// 2. Assign event using the element node
+var h1Element = document.querySelectorAll('h1');
+console.log(h1Element);
+
+for (var i = 0; i < h1Element.length; i++) {
+    h1Element[i].onclick = function(e) {
+        console.log(e.target);
+    }
+}
+
+// === 1. Input / select
+var inputValue;
+
+var inputElement = document.querySelector('input[type="text"]');
+
+// input
+inputElement.onchange = function(e) {
+    inputValue = e.target.value;
+    console.log(`Value: ${inputValue}`);
+}
+
+inputElement.oninput = function(e) {
+    inputValue = e.target.value;
+    console.log(`Value: ${inputValue}`);
+}
+
+// checkbox
+var checkboxElement = document.querySelector('input[type="checkbox"]');
+
+checkboxElement.onchange = function(e) {
+    console.log(e.target.checked);
+}
+
+// select
+var selectElement = document.querySelector('select');
+
+selectElement.onchange = function(e) {
+    console.log(e.target.value);
+}
+
+// === 2. Key up / down
+inputElement.onkeydown = function(e) {
+    console.log(e.which);
+
+    switch(e.which) {
+        case 27:
+            console.log('Exit');
+            break;
+    }
+}
+
+document.onkeyup = function(e) {
+    switch(e.which) {
+        case 27:
+            console.log('EXIT');
+            break;
+        case 13:
+            console.log('SEND MESSAGE');
+            break;
+    }
+}
+
+document.onkeypress = function(e) {
+    console.log(e.which);
+}
+
+// === 1. preventDefault
+var aElements = document.links;
+
+for (var i = 0; i < aElements.length; i++) {
+    aElements[i].onclick = function(e) {
+        if (!e.target.href.startsWith('https://www.facebook.com/')) {
+            e.preventDefault();
+        }
+    }
+}
+
+var ulElement = document.querySelector('ul');
+
+ulElement.onmousedown = function(e) {
+    e.preventDefault();
+}
+
+ulElement.onclick = function(e) {
+    console.log(e.target);
+}
+
+// 2. stopPropagation (Propagation: lan truyền)
+var divElement = document.querySelector('.div');
+divElement.onclick = function(e) {
+    console.log('DIV');
+}
+
+var buttonElement = document.querySelector('button');
+buttonElement.onclick = function(e) {
+    console.log('Click me!');
+    e.stopPropagation();
+}
+
+// example
+var body = document.querySelector('.all');
+var mode = document.querySelector('a');
+mode.onclick = function(e) {
+    body.classList.toggle('dark');
+    console.log(mode);
+}
 

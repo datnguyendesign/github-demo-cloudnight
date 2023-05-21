@@ -5,10 +5,70 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+        .red {
+            color: red;
+        }
+
+        .dark {
+            background: black;
+        }
+
+        ul {
+            display: none;
+        }
+
+        input:focus ~ ul {
+            display: block;
+        }
+
+    </style>
 </head>
 <body>
+    <div class="all">
+        <h1>HTML DOM</h1>
 
-    <h1>Javascript basic</h1>
+        <h2 class="get">blabla</h2>
+
+        <div class="box">
+            <h1>CLASSLIST</h1>
+        </div>
+
+        <h1 class="h1Elm" onclick="console.log(this)">DOM events</h1>
+
+        <div class="form">
+
+            <input type="text">
+            <input type="checkbox" name="" id="">
+
+            <select name="" id="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+
+        </div>
+
+        <a href="#">Night mode <br></a>
+
+        <a href="https://www.facebook.com/">hothithealing</a>
+    </div>
+
+    <input type="text" placeholder="search">
+
+    <ul>
+        <li>Javascript</li>
+        <li>PHP</li>
+        <li>Golang</li>
+    </ul>
+
+    <div class="div">
+        DIV
+
+        <button>Click me!</button>
+    </div>
 
     <script src="main.js"></script>
 </body>
